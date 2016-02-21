@@ -30,8 +30,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.trash.TrashHandler;
-import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowHandler;
@@ -634,7 +632,7 @@ public abstract class ModelImpl implements Model {
 
 				if (validAttributes != null) {
 					validAttributes.add(attributes[i]);
-				}
+		}
 			}
 		}
 
@@ -652,10 +650,6 @@ public abstract class ModelImpl implements Model {
 	public StagedModelDataHandler<?> getStagedModelDataHandler() {
 		return StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
 			getClassName());
-	}
-
-	public TrashHandler getTrashHandler() {
-		return TrashHandlerRegistryUtil.getTrashHandler(getClassName());
 	}
 
 	public WorkflowHandler getWorkflowHandler() {
@@ -750,10 +744,6 @@ public abstract class ModelImpl implements Model {
 		}
 
 		return false;
-	}
-
-	public boolean isTrashEnabled() {
-		return (getTrashHandler() != null);
 	}
 
 	public boolean isWorkflowEnabled() {

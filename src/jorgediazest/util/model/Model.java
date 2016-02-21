@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.dao.orm.ProjectionList;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.lar.StagedModelDataHandler;
 import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.model.Portlet;
 
 import java.util.List;
@@ -128,8 +127,6 @@ public interface Model extends Cloneable, Comparable<Model> {
 
 	public StagedModelDataHandler<?> getStagedModelDataHandler();
 
-	public TrashHandler getTrashHandler();
-
 	public boolean hasAttribute(String attribute);
 
 	public boolean hasAttributes(String[] attributes);
@@ -150,8 +147,6 @@ public interface Model extends Cloneable, Comparable<Model> {
 	public boolean isResourcedModel();
 
 	public boolean isStagedModel();
-
-	public boolean isTrashEnabled();
 
 	public boolean isWorkflowEnabled();
 

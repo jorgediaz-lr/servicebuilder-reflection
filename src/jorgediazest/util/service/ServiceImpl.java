@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.ClassedModel;
 import com.liferay.portal.model.Group;
@@ -171,8 +170,8 @@ public class ServiceImpl implements Service {
 	public Class<?> getLiferayModelImplClass() {
 		if (liferayModelImplClass == null) {
 			liferayModelImplClass = ServiceUtil.getLiferayModelImplClass(
-				getClassLoader(), classPackageName, classSimpleName);
-		}
+			getClassLoader(), classPackageName, classSimpleName);
+	}
 
 		return liferayModelImplClass;
 	}
@@ -194,15 +193,15 @@ public class ServiceImpl implements Service {
 
 	public void init(Class<? extends ClassedModel> classInterface) {
 
-		Class<?> clazz = Group.class;
-		this.modelService = ServiceUtil.getLocalService(
-			null, clazz.getPackage().getName(), clazz.getSimpleName());
+			Class<?> clazz = Group.class;
+			this.modelService = ServiceUtil.getLocalService(
+				null, clazz.getPackage().getName(), clazz.getSimpleName());
 
 		this.classPackageName = classInterface.getPackage().getName();
 		this.classSimpleName = classInterface.getSimpleName();
 		this.className = classPackageName + "." + classSimpleName;
 		this.classInterface = classInterface;
-	}
+		}
 
 	public DynamicQuery newDynamicQuery() {
 		if (classInterface != null) {
@@ -237,11 +236,7 @@ public class ServiceImpl implements Service {
 		Method method = null;
 
 		if (localServiceMethods.containsKey(key)) {
-			try {
-				method = localServiceMethods.get(key).getMethod();
-			}
-			catch (NoSuchMethodException e) {
-			}
+			method = localServiceMethods.get(key);
 		}
 
 		if (method == null) {
@@ -254,11 +249,8 @@ public class ServiceImpl implements Service {
 				method = classLocalService.getMethod(methodName);
 			}
 
-			if (method == null) {
-				localServiceMethods.put(key, new MethodKey());
-			}
-			else {
-				localServiceMethods.put(key, new MethodKey(method));
+			if (method != null) {
+				localServiceMethods.put(key, method);
 			}
 		}
 
@@ -271,8 +263,8 @@ public class ServiceImpl implements Service {
 	protected String classSimpleName = null;
 	protected Criterion filter = null;
 	protected Class<?> liferayModelImplClass = null;
-	protected Map<String, MethodKey> localServiceMethods =
-		new ConcurrentHashMap<String, MethodKey>();
+	protected Map<String, Method> localServiceMethods =
+		new ConcurrentHashMap<String, Method>();
 	protected BaseLocalService modelService = null;
 
 	private static Log _log = LogFactoryUtil.getLog(ServiceImpl.class);
