@@ -270,9 +270,6 @@ public class ModelFactory {
 	protected void fillHandlerPortletIdMap() {
 		for (Portlet portlet : PortletLocalServiceUtil.getPortlets()) {
 			addHandlersToMap(portlet.getIndexerClasses(), portlet);
-			addHandlersToMap(
-				portlet.getStagedModelDataHandlerClasses(), portlet);
-			addHandlersToMap(portlet.getTrashHandlerClasses(), portlet);
 			addHandlersToMap(portlet.getWorkflowHandlerClasses(), portlet);
 		}
 	}
