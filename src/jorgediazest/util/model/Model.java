@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.model.Portlet;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -153,6 +154,10 @@ public interface Model extends Cloneable, Comparable<Model> {
 		String[] attributes, List<String> validAttributes);
 
 	public Service getService();
+
+	public TableInfo getTableInfo();
+
+	public HashMap<String, TableInfo> getTableInfoMappings();
 
 	public boolean hasAttribute(String attribute);
 
