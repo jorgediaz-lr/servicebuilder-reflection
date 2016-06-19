@@ -362,7 +362,7 @@ public class DataUtil {
 		}
 
 		if (DataUtil.getIgnoreCase() && !Validator.isXml(aux)) {
-			aux = StringUtil.toLowerCase(aux);
+			aux = StringUtil.lowerCase(aux);
 		}
 
 		return aux;
@@ -586,7 +586,7 @@ public class DataUtil {
 
 			if (DataUtil.isNotNull(value)) {
 				if (DataUtil.getIgnoreCase()) {
-					value = StringUtil.toLowerCase(value);
+					value = StringUtil.lowerCase(value);
 				}
 
 				cleanMap.put(key, value);
